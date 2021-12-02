@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowMaterialGrid:false,
       title: 'Crypto Eye',
       theme: ThemeData(
         brightness: Brightness.light,
@@ -22,6 +23,9 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.dark,
       debugShowCheckedModeBanner: false,
       home: CryptoView(),
+      // home: MultiBlocProvider(
+      //     providers: [BlocProvider(create: (context) => CryptoBloc())],
+      //     child: CryptoView()),
     );
   }
 }

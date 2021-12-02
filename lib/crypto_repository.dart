@@ -8,10 +8,11 @@ class CryptoRepository {
   final client = http.Client();
   final queryParameters={'x-access-token':'coinrankingf402416bf98856f12572888a173e3bf195beadc48ed47a5e'};
 
-  Future<CryptoPageResponce> getCryptoPage(int pageIndex) async {
+  Future<CryptoPageResponce> getCryptoPage() async {
     final uri = Uri.https(baseURL, '/v2/coins');
     final response = await client.get(uri);
     final json = jsonDecode(response.body);
+    print(response.body);
     return CryptoPageResponce.fromJson(json);
   }
 }

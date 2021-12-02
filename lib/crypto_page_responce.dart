@@ -35,8 +35,8 @@
 import 'package:flutter/material.dart';
 
 class CryptoListing {
-  final int uuid;
-  final String name;
+  final uuid;
+  final name;
 
   CryptoListing({required this.uuid, required this.name});
 
@@ -53,7 +53,7 @@ class CryptoPageResponce {
   CryptoPageResponce({required this.cryptolisting});
 
   factory CryptoPageResponce.fromJson(Map<String, dynamic> json) {
-    final cryptolisting = (json['coins'] as List)
+    final cryptolisting = (json['data']['coins'] as List)
         .map((listingjson) => CryptoListing.fromJson(listingjson))
         .toList();
     return CryptoPageResponce(cryptolisting: cryptolisting);
