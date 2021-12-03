@@ -12,7 +12,6 @@ class CryptoRepository {
     final uri = Uri.https(baseURL, '/v2/coins');
     final response = await client.get(uri);
     final json = jsonDecode(response.body);
-    print(response.body);
     return CryptoPageResponce.fromJson(json);
   }
 }

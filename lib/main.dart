@@ -13,16 +13,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowMaterialGrid:false,
-      title: 'Crypto Eye',
       theme: ThemeData(
-        brightness: Brightness.light,
+        // brightness: Brightness.light,
       ),
-      darkTheme: ThemeData(
-        brightness: Brightness.dark,
-      ),
-      themeMode: ThemeMode.dark,
+      darkTheme: ThemeData.dark(),
+        // brightness: Brightness.dark,
+      
+      themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
-      home: CryptoView(),
+      home: const CryptoView(),
       // home: MultiBlocProvider(
       //     providers: [BlocProvider(create: (context) => CryptoBloc())],
       //     child: CryptoView()),

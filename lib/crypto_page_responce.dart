@@ -35,15 +35,26 @@
 import 'package:flutter/material.dart';
 
 class CryptoListing {
-  final uuid;
+  final symbol;
   final name;
+  final logo;
+  final change;
+  final price;
 
-  CryptoListing({required this.uuid, required this.name});
+  // final String? color;
+
+  CryptoListing({required this.symbol, required this.name, required this.logo, required this.change, required this.price});
 
   factory CryptoListing.fromJson(Map<String, dynamic> json) {
+
     final name = json['name'];
-    final uuid = json['uuid'];
-    return CryptoListing(name: name, uuid: uuid);
+    final symbol = json['symbol'];
+    final String logo=json['iconUrl'];
+    final String change=json['change'];
+    final price=json['price'];
+
+    // final color = json['color'];
+    return CryptoListing(name: name, symbol: symbol,logo: logo, change:change,price: price);
   }
 }
 
