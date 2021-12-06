@@ -40,21 +40,38 @@ class CryptoListing {
   final logo;
   final change;
   final price;
+  final sparkline;
+  // final sparklist;
+  // final data;
 
   // final String? color;
 
-  CryptoListing({required this.symbol, required this.name, required this.logo, required this.change, required this.price});
+  CryptoListing(
+      {required this.symbol,
+      required this.name,
+      required this.logo,
+      required this.change,
+      required this.price,
+      required this.sparkline,});
 
   factory CryptoListing.fromJson(Map<String, dynamic> json) {
-
     final name = json['name'];
     final symbol = json['symbol'];
-    final String logo=json['iconUrl'];
-    final String change=json['change'];
-    final price=json['price'];
+    final String logo = json['iconUrl'];
+    final String change = json['change'];
+    final price = json['price'];
+    final sparkline = json['sparkline'];
+    // final List<num> sparklist=sparkline.cast<num>();
+    // final List<num> data= List<num>.from(sparkline);
 
     // final color = json['color'];
-    return CryptoListing(name: name, symbol: symbol,logo: logo, change:change,price: price);
+    return CryptoListing(
+        name: name,
+        symbol: symbol,
+        logo: logo,
+        change: change,
+        price: price,
+        sparkline: sparkline,);
   }
 }
 

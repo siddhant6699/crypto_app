@@ -11,17 +11,17 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowMaterialGrid:false,
-      theme: ThemeData(
-        // brightness: Brightness.light,
-      ),
-      darkTheme: ThemeData.dark(),
+      // theme: ThemeData(
+      //   // brightness: Brightness.light,
+      // ),
+      //darkTheme: ThemeData.dark(),
         // brightness: Brightness.dark,
       
-      themeMode: ThemeMode.system,
+      //themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
-      home: const CryptoView(),
+      home: CryptoView(),
       // home: MultiBlocProvider(
       //     providers: [BlocProvider(create: (context) => CryptoBloc())],
       //     child: CryptoView()),
