@@ -1,39 +1,3 @@
-// {
-//   "status": "success",
-//   "data": {
-//     "stats": {
-//       "total": 3,
-//       "totalCoins": 10000,
-//       "totalMarkets": 35000,
-//       "totalExchanges": 300,
-//       "totalMarketCap": "239393904304",
-//       "total24hVolume": "503104376.06373006"
-//     },
-//     "coins": [
-//       {
-//         "uuid": "Qwsogvtv82FCd",
-//         "symbol": "BTC",
-//         "name": "Bitcoin",
-//         "color": "#f7931A",
-//         "iconUrl": "https://cdn.coinranking.com/Sy33Krudb/btc.svg",
-//         "marketCap": "159393904304",
-//         "price": "9370.9993109108",
-//         "btcPrice": "1",
-//         "listedAt": 1483228800,
-//         "change": "-0.52",
-//         "rank": 1,
-//         "sparkline": [
-//           "9515.0454185372",
-//           "9370.9993109108"
-//         ],
-//         "coinrankingUrl": "https://coinranking.com/coin/Qwsogvtv82FCd+bitcoin-btc"`,
-//         "24hVolume": "6818750000"
-//       }
-//     ]
-//   }
-// }
-import 'package:flutter/material.dart';
-
 class CryptoListing {
   final symbol;
   final name;
@@ -41,10 +5,7 @@ class CryptoListing {
   final change;
   final price;
   final sparkline;
-  // final sparklist;
-  // final data;
-
-  // final String? color;
+  final uuid;
 
   CryptoListing(
       {required this.symbol,
@@ -52,28 +13,76 @@ class CryptoListing {
       required this.logo,
       required this.change,
       required this.price,
-      required this.sparkline,});
+      required this.sparkline,
+      required this.uuid});
 
   factory CryptoListing.fromJson(Map<String, dynamic> json) {
+    //print('in formListing');
     final name = json['name'];
     final symbol = json['symbol'];
     final String logo = json['iconUrl'];
     final String change = json['change'];
     final price = json['price'];
     final sparkline = json['sparkline'];
-    // final List<num> sparklist=sparkline.cast<num>();
-    // final List<num> data= List<num>.from(sparkline);
+    final uuid = json['uuid'];
 
-    // final color = json['color'];
     return CryptoListing(
-        name: name,
-        symbol: symbol,
-        logo: logo,
-        change: change,
-        price: price,
-        sparkline: sparkline,);
+      name: name,
+      symbol: symbol,
+      logo: logo,
+      change: change,
+      price: price,
+      sparkline: sparkline,
+      uuid: uuid,
+    );
   }
 }
+
+class DetailedCryptoListing {
+  final sparkline;
+  final uuid;
+  final marketCap;
+  final numberOfMarkets;
+  final volume;
+
+  DetailedCryptoListing(
+      {required this.sparkline,
+      required this.uuid,
+      required this.marketCap,
+      required this.numberOfMarkets,
+      required this.volume});
+
+  factory DetailedCryptoListing.fromJson(Map<String, dynamic> json) {
+    final sparkline = json['data']['coin']['sparkline'];
+    final uuid = json['data']['coin']['uuid'];
+    final marketCap = json['data']['coin']['marketCap'];
+    final numberOfMarkets = json['data']['coin']['numberOfMarkets'];
+    final volume = json['data']['coin']['24hVolume'];
+
+    return DetailedCryptoListing(
+      sparkline: sparkline,
+      uuid: uuid,
+      marketCap: marketCap,
+      numberOfMarkets: numberOfMarkets,
+      volume: volume,
+    );
+  }
+}
+
+// class DetailedCryptoPage {
+//   final List<DetailedCryptoListing> cryptolisting;
+
+//   DetailedCryptoPage({required this.cryptolisting});
+
+//   factory DetailedCryptoPage.fromJson(Map<String, dynamic> json) {
+//     print('in fromJSON');
+//     final cryptolisting = (json['data'] as List)
+//         .map((listingjson) => DetailedCryptoListing.fromJson(listingjson))
+//         .toList();
+
+//     return DetailedCryptoPage(cryptolisting: cryptolisting);
+//   }
+// }
 
 class CryptoPageResponce {
   final List<CryptoListing> cryptolisting;
