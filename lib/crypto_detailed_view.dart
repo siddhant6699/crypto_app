@@ -37,23 +37,6 @@ class _CryptoDetailViewState extends State<CryptoDetailView> {
   var numberOfMarkets;
   var volume;
 
-  // Future<void> marketData() async {
-  //   final cryptoPageResponce24 =
-  //       await _cryptoRepository.getDetailedCrypto(widget.uuid, '7d');
-  //   marketCap = gen(cryptoPageResponce24.marketCap);
-  //   volume = gen(cryptoPageResponce24.volume);
-  //   //numberOfMarkets = gen(cryptoPageResponce24.numberOfMarkets);
-  //   setState(() {});
-  // }
-
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   CircularProgressIndicator();
-  //   marketData();
-  //   super.initState();
-  // }
-
   @override
   Widget build(BuildContext context) {
     for (int i = 0; i < widget.data.length; i++) {
@@ -71,7 +54,8 @@ class _CryptoDetailViewState extends State<CryptoDetailView> {
           centerTitle: true,
         ),
         backgroundColor: const Color(0XFF1C1C1E),
-        body: BlocBuilder<DetailCryptoBloc, DetailCryptoState>(builder: (context, state) {
+        body: BlocBuilder<DetailCryptoBloc, DetailCryptoState>(
+            builder: (context, state) {
           if (state is DetailCryptoLoadInProgress) {
             return const Center(
               child: CircularProgressIndicator(),
@@ -105,7 +89,7 @@ class _CryptoDetailViewState extends State<CryptoDetailView> {
                               const Icon(
                                 Icons.arrow_drop_down_outlined,
                                 color: Colors.red,
-                                size: 30,
+                                size: 25,
                               ),
                               Text(
                                 ((widget.change).replaceAll("-", "")) + "%",
@@ -120,7 +104,7 @@ class _CryptoDetailViewState extends State<CryptoDetailView> {
                               const Icon(
                                 Icons.arrow_drop_up_outlined,
                                 color: Colors.green,
-                                size: 30,
+                                size: 25,
                               ),
                               Text(
                                 ((widget.change).replaceAll("-", "")) + "%",
@@ -251,7 +235,7 @@ class _CryptoDetailViewState extends State<CryptoDetailView> {
                               padding: EdgeInsets.all(5.0),
                               child: Text(
                                 gen(state.marketCap),
-                                style:const TextStyle(
+                                style: const TextStyle(
                                     fontSize: 18, color: Colors.white),
                               ),
                             ),
@@ -280,13 +264,27 @@ class _CryptoDetailViewState extends State<CryptoDetailView> {
               ),
             );
           } else if (state is DetailCryptoPageLoadFailed) {
+            print(state.error.toString());
             return Center(
-                child: Text(
-              state.error.toString(),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Text(
+                  'Oops!',
+                  style: TextStyle(
+                      fontSize: 30,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  'You may need try again later',
+                  style: TextStyle(fontSize: 20, color: Colors.white),
+                ),
+              ],
             ));
-          } else{
+          } else {
             return const Center(
-              child: Text('All went wrong'),
+              child: Text(''),
             );
           }
         }),
@@ -295,29 +293,27 @@ class _CryptoDetailViewState extends State<CryptoDetailView> {
   }
 
   Future<void> getsparkdata(var time) async {
+    //await Future.delayed(const Duration(seconds: 3));
     final cryptoPageResponce24 =
         await _cryptoRepository.getDetailedCrypto(widget.uuid, time);
     var res = cryptoPageResponce24.sparkline;
     sparklineData = [];
     for (int i = 0; i < res.length; i++) {
-      sparklineData.add(double.parse(res[i]));
+      if (res[i] != null) {
+        sparklineData.add(double.parse(res[i]));
+      }
     }
 
     setState(() {});
   }
 
   String gen(num) {
-    print(num);
     double n = double.parse(num);
-    print(n);
     if (n > 999999 && n < 999999999) {
-      print('if');
       return "${(n / 1000000).toStringAsFixed(1)} Million";
     } else if (n > 999999999) {
-      print('else');
       return "${(n / 1000000000).toStringAsFixed(1)} Billion";
     } else {
-      print('else ese');
       return n.toStringAsFixed(1);
     }
   }

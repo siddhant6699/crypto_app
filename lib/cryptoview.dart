@@ -50,16 +50,6 @@ class _CryptoViewState extends State<CryptoView> {
                   child: ListView.builder(
                       itemCount: state.cryptoListings.length,
                       itemBuilder: (context, index) {
-                        
-                        // String color;
-                        // if (state.cryptoListings[index].color != null) {
-                        //   color =
-                        //       (state.cryptoListings[index].color)!;
-                        //   print(color);
-                        // }
-                        // else{
-                        //   color="#ffffff";
-                        // }
                         double price =
                             double.parse(state.cryptoListings[index].price);
                         String url = state.cryptoListings[index].logo;
@@ -94,12 +84,6 @@ class _CryptoViewState extends State<CryptoView> {
                                   const Icon(Icons.error),
                               placeholder: (context, url) =>
                                   const CircularProgressIndicator()),
-                          // leading: Image(
-                          //        height: 50,
-                          //        width: 50,
-                          //        image: NetworkImage(logo),
-                          //        // image: NetworkImage(state.cryptoListings[index].logo),
-                          //      ),
                           title: Text(
                             state.cryptoListings[index].name,
                             style: const TextStyle(
@@ -150,27 +134,30 @@ class _CryptoViewState extends State<CryptoView> {
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white),
                           ),
-                          // child: Column(
-                          //   children: [
-                          //     Image(
-                          //       height: 50,
-                          //       width: 50,
-                          //       image: NetworkImage(logo),
-                          //       // image: NetworkImage(state.cryptoListings[index].logo),
-                          //     ),
-                          //     Text(state.cryptoListings[index].symbol),
-                          //     Text(state.cryptoListings[index].name),
-                          //   ],
-                          // ),
                         );
                       }),
                 ),
               ),
             );
           } else if (state is CryptoPageLoadFailed) {
+            print(state.error.toString());
             return Center(
-                child: Text(
-              state.error.toString(),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Text(
+                  'Oops!',
+                  style: TextStyle(
+                      fontSize: 30,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 10,),
+                Text(
+                  'You may need to try again later',
+                  style: TextStyle(fontSize: 20, color: Colors.white),
+                ),
+              ],
             ));
           } else {
             return const Center(

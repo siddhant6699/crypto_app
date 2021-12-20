@@ -53,6 +53,8 @@ class DetailedCryptoListing {
       required this.volume});
 
   factory DetailedCryptoListing.fromJson(Map<String, dynamic> json) {
+    print(json);
+    print(json['data']);
     final sparkline = json['data']['coin']['sparkline'];
     final uuid = json['data']['coin']['uuid'];
     final marketCap = json['data']['coin']['marketCap'];
@@ -68,21 +70,6 @@ class DetailedCryptoListing {
     );
   }
 }
-
-// class DetailedCryptoPage {
-//   final List<DetailedCryptoListing> cryptolisting;
-
-//   DetailedCryptoPage({required this.cryptolisting});
-
-//   factory DetailedCryptoPage.fromJson(Map<String, dynamic> json) {
-//     print('in fromJSON');
-//     final cryptolisting = (json['data'] as List)
-//         .map((listingjson) => DetailedCryptoListing.fromJson(listingjson))
-//         .toList();
-
-//     return DetailedCryptoPage(cryptolisting: cryptolisting);
-//   }
-// }
 
 class CryptoPageResponce {
   final List<CryptoListing> cryptolisting;
