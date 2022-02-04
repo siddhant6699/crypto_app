@@ -1,16 +1,14 @@
 # crypto_app
 
-A new Flutter project.
+The app utilises CoinRanking API and shows users the details about cryptocurrencies in the market.
 
-## Getting Started
+## App Features
+1. Get price info about the most trending cryptocurrencies in the market.
 
-This project is a starting point for a Flutter application.
+2. Shows the cryptocurrency's price history in the form of a line chart.
 
-A few resources to get you started if this is your first Flutter project:
+# Screenshots
+<img src="https://user-images.githubusercontent.com/56200946/152469196-b3661a2e-693a-478e-b776-c7b020c0e998.png" width="250" height="530" /><img src="https://user-images.githubusercontent.com/56200946/152469192-54911e19-56ca-48e8-8cce-35cb8c2b00a7.png" width="250" height="530" />
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# API Used
+https://coinranking.com/page/cryptocurrency-api
